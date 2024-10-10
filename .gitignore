@@ -1,0 +1,10 @@
+.DS_Store
+.vscode
+*.o
+*.a
+*.so
+*.log
+*.db
+ruralis2
+stop.sh
+
