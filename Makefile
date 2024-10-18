@@ -16,7 +16,7 @@ libruralis2.so : $(LIB_OBJS)
 	ar rcs $@ $^
 
 #####################  実行ファイル生成
-EXEC_OBJS = main.o
+EXEC_OBJS = main.o test.o
 ruralis2: $(EXEC_OBJS) libruralis2.so
 	g++ -o $@ $(EXEC_OBJS) -L. -lruralis2 -lsqlite3 
 
@@ -27,7 +27,7 @@ ruralis2: $(EXEC_OBJS) libruralis2.so
 	$(CPP) $(CPPFLAGS) -o $@ -c $<
 
 clean:
-#	rm $(RURA_OBJS)
+	rm $(EXEC_OBJS)
 	find . -name "*~" -delete
 	rm $(LIB_OBJS)
 #	rm ruralis libruralis.so

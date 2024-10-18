@@ -1,4 +1,7 @@
 set -x
+LIB_FILE_NAME=libruralis2.so
+H_FILE_NAME=ruralis2.h
+
 
 if [ "$1" = "run" ]; then
 	sh stop.sh
@@ -19,6 +22,13 @@ elif [ "$1" = "net" ]; then
     echo ▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️ ネットワークチェック158 ▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️
     set -x
     netstat -an | grep 1581
+elif [ "$1" = "yuralib" ]; then
+	mkdir -p ~/Library/yuralib/lib
+	mkdir -p ~/Library/yuralib/include
+	if [ "$2" = "push" ]; then
+		cp $LIB_FILE_NAME ~/Library/yuralib/lib 	
+		cp $H_FILE_NAME ~/Library/yuralib/include 	
+	fi
 else
 	clear
 	make all
