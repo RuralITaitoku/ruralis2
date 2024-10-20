@@ -642,6 +642,11 @@ int ruralis2_http::line_render(const string& line, string& html) {
 
 
 int ruralis2_http::markdown_render(const std::string& md, std::string& html) {
+    /*
+    let mut toc_html = String::from("<div class='table_of_contents'>\n");
+    toc_html.push_str(&format!("　　　　　<a href='#row{}'>{}</a><br/>\n", bm_index, &esc_html(&line)));
+    html.push_str(&format!("<h4 id='row{}'>{}</h4>\n", bm_index, &esc_html(&line)));
+    */
     istringstream iss(md);
     string line;
     vector<string> lines;
@@ -665,6 +670,8 @@ int ruralis2_http::markdown_render(const std::string& md, std::string& html) {
             oss << "<h2>" << l.substr(2) << "</h2>" << endl;
         } else if((si = l.find("#")) == 0) {
             oss << "<h2>" << l.substr(1) << "</h2>" << endl;
+        } else if((si = l.find("---")) == 0) {
+            oss << "<hr/>" << endl;
         } else {
             string html;
             line_render(l, html);
