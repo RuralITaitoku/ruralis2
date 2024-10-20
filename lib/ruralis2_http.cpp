@@ -372,13 +372,24 @@ bool ruralis2_http::is_keep_alive() {
         return false;
     }
 }
-bool ruralis2_http::isPost() {
+bool ruralis2_http::is_post() {
     if (request_map["Command"] == "POST") {
         return true;
     } else {
         return false;
     }
 }
+bool ruralis2_http::is_smartphone() {
+    string user_agent = request_map["User-Agent"];
+    if (user_agent.find("iPhone") != string::npos) {
+        return true;
+    }
+    if (user_agent.find("Android") != string::npos) {
+        return true;
+    }
+    return false;
+}
+
 void ruralis2_http::recv_thread() {
     DP("受信スレッド開始--------" << client_fd);
     DP("top_dir=" << top_dir);
@@ -390,7 +401,7 @@ void ruralis2_http::recv_thread() {
             break;
         }
         analyze_request();
-        if (isPost()) {
+        if (is_post()) {
             int content_length = std::stoi(request_map["Content-Length"]);
             okng = recv_request_content(content_length);
             if (okng) {

@@ -158,7 +158,11 @@ int post_func(ruralis2_http& http) {
         map["title"] = page;
         map["body|safe"] = html_input;
         map["sidemenu|safe"] = html_sidemenu;
-        okng = temp_zubolite.render(map, html_page);
+        if (http.is_smartphone()) {
+            okng = temp_zubolite_smp.render(map, html_page);
+        } else {
+            okng = temp_zubolite.render(map, html_page);
+        }
         http.content = html_page;
         http.responseOK();
         return ruralis2_http::OK;
@@ -169,7 +173,7 @@ int post_func(ruralis2_http& http) {
 
 int get_func(ruralis2_http& http) {
     string path = http.get_request_path();
-    if (http.isPost()) {
+    if (http.is_post()) {
         return post_func(http);
     }
     string sql;
@@ -216,7 +220,11 @@ int get_func(ruralis2_http& http) {
         string html;
         map["body|safe"] = html_input;
         map["sidemenu|safe"] = html_sidemenu;
-        okng = temp_zubolite.render(map, html);
+        if (http.is_smartphone()) {
+            okng = temp_zubolite_smp.render(map, html);
+        } else {
+            okng = temp_zubolite.render(map, html);
+        }
         http.content = html;
         http.responseOK();
         return ruralis2_http::OK;
@@ -229,7 +237,11 @@ int get_func(ruralis2_http& http) {
         map["body|safe"] = rows[0][2];
         map["sidemenu|safe"] = html_sidemenu;
        string html;
-        okng = temp_zubolite.render(map, html);
+        if (http.is_smartphone()) {
+            okng = temp_zubolite_smp.render(map, html);
+        } else {
+            okng = temp_zubolite.render(map, html);
+        }
         http.content = html;
         http.responseOK();
         return ruralis2_http::OK;

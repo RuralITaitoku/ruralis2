@@ -157,7 +157,8 @@ public:
 
     int responseOK();
     int response_see_other(std::string &location);
-    bool isPost();
+    bool is_post();
+    bool is_smartphone();
 };
 
 
