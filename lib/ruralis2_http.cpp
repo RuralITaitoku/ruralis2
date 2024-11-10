@@ -417,7 +417,7 @@ void ruralis2_http::recv_thread() {
                 DP("OK送信成功");
             };
         } else {
-            okng = content_func(*this);
+            okng = (*content_func)(*this);
             if (okng == OK) {
                 //responseOK();
                 if (send_response() == OK) {

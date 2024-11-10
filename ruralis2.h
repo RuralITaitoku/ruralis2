@@ -139,7 +139,8 @@ public:
     std::map<std::string, std::string> request_map;
     std::map<std::string, std::string> param_map;
     std::string err_msg;
-    std::function<int(ruralis2_http&)> content_func;
+    // std::function<int(ruralis2_http&)> content_func;
+    int (*content_func)(ruralis2_http&);
     ruralis2_bytes content;
 
     ruralis2_http();

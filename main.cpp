@@ -37,7 +37,7 @@ int select_html(const string& name, string& html) {
     string sql = "select html from page where name=";
     sql += sqlite.sqltext(name);
     DP(sql);
-    vector<vector<string>> rows;
+    vector< vector<string> > rows;
     okng = sqlite.select(sql, rows);
     if (okng) {
         DP(sqlite.err_msg);
@@ -56,7 +56,7 @@ int select_wtml(const string& name, string& wtml) {
     string sql = "select wtml from page where name=";
     sql += sqlite.sqltext(name);
     DP(sql);
-    vector<vector<string>> rows;
+    vector< vector<string> > rows;
     okng = sqlite.select(sql, rows);
     if (okng) {
         DP(sqlite.err_msg);
@@ -198,7 +198,7 @@ int get_func(ruralis2_http& http) {
     sql = "select name, wtml, html from page where name=";
     sql += sqlite.sqltext(path);
     DP(sql);
-    vector<vector<string>> rows;
+    vector< vector<string> > rows;
     okng = sqlite.select(sql, rows);
     if (okng) {
         EP(sqlite.err_msg);
